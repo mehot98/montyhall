@@ -6,6 +6,9 @@ export class DoorGroup{
         this.y;        
         this.door = [];
         this.scale = 1;
+        this.click = 0;
+        this.i = 0;
+        this.j = 0;
         this.stageWidth = stageWidth;
         this.stageHeight = stageHeight;
                 
@@ -42,6 +45,7 @@ export class DoorGroup{
         const ran_i = Math.floor(Math.random() * this.num_width);
         const ran_j = Math.floor(Math.random() * this.num_height);
         this.door[ran_i][ran_j].answer = true;
+
     }
     
 
@@ -51,13 +55,17 @@ export class DoorGroup{
             for(let j = 0; j < this.num_height; j++){
 
                 this.door[i][j].animate(ctx);
-            }           
-            
+            }         
         }
+
+        
+
+        
     }
 
     click_door(e){
-
+        this.click += 1;
+        
         for(let i = 0; i < this.num_width; i++){   
             for(let j = 0; j < this.num_height; j++){
                 if(e.clientX > this.door[i][j].x && e.clientX < this.door[i][j].x + this.door[i][j].width && e.clientY > this.door[i][j].y && e.clientY < this.door[i][j].y + this.door[i][j].height){
@@ -73,5 +81,39 @@ export class DoorGroup{
             }      
             
         }
+
+        if(this.click == 1){
+            requestAnimationFrame(this.click_first.bind(this));
+            
+            this.click = 0;
+        }
+
     }
+
+    click_first(){
+        var animation = requestAnimationFrame(this.click_first.bind(this));
+
+        this.click += 1;
+        
+        if(this.door[this.i][this.j].answer == false){
+            this.door[this.i][this.j].click = true;
+
+        }
+
+        if(this.click > 10){
+            this.click = 0;
+            if(this.i < this.num_width - 1){
+                this.i++;
+            }else{
+                this.i = 0;
+                this.j++;
+                if(this.j == this.num_height){
+                    cancelAnimationFrame(animation);
+                    this.click = 100;
+                }
+            }
+            
+        }
+    }
+
 }
