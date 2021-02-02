@@ -32,10 +32,12 @@ class App{
         const height = 200;
         
         this.door_group = new DoorGroup(
+            this.ctx,
             this.stageWidth,
             this.stageHeight,
             5//this.num,
         );
+        
     }
 
     animate(){
