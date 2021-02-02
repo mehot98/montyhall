@@ -6,6 +6,7 @@ export class Door{
         this.height = height;
         this.scale = 1;
         this.click = false;
+        this.answer = false;
 
     }
 
@@ -22,7 +23,17 @@ export class Door{
         ctx.fillRect(-this.width, 0, this.width, this.height);
         ctx.fillStyle = "#4aac96";
         ctx.fillRect(-this.width + 5, 5, this.width - 5, this.height - 10);
+        
         ctx.restore();              
+        
+        if(this.answer){
+        ctx.fillStyle = "#000";
+        ctx.beginPath();
+        ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+            
+        }
         
         ctx.save();        
         ctx.translate(this.x + this.width, this.y);
