@@ -7,7 +7,7 @@ export class Door{
         this.scale = 1;
         this.click = false;
         this.answer = false;
-
+        this.random = false;
     }
 
     animate(ctx){
@@ -15,6 +15,7 @@ export class Door{
         const x = -((this.width) * 8.5) / 10;
         const y = ((this.height)) / 2;
         const radius = this.width / 12;
+        const side = this.width / 20
         
 
         ctx.save();
@@ -22,14 +23,14 @@ export class Door{
         ctx.fillStyle = "#000";
         ctx.fillRect(-this.width, 0, this.width, this.height);
         ctx.fillStyle = "#4aac96";
-        ctx.fillRect(-this.width + 5, 5, this.width - 5, this.height - 10);
+        ctx.fillRect(-this.width + side, side, this.width - side, this.height - side * 2);
         
         ctx.restore();              
         
         if(this.answer){
         ctx.fillStyle = "#000";
         ctx.beginPath();
-        ctx.arc(this.x + this.width / 2, this.y + this.height / 2, this.width / 3, 0, Math.PI * 2);
+        ctx.arc(this.x + side + (this.width - side) / 2, this.y + this.height / 2, this.width / 3, 0, Math.PI * 2);
         ctx.fill();
         ctx.closePath();
             

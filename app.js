@@ -13,10 +13,9 @@ class App{
         
         window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
+        
 
-                
-
-        window.requestAnimationFrame(this.animate.bind(this));
+        window.requestAnimationFrame(this.animate.bind(this));        
     }
 
     resize(){
