@@ -58,8 +58,7 @@ export class DoorGroup{
 
     }
 
-    click_door(e){
-        this.click += 1;
+    click_door(e){        
         let ran_i;
         let ran_j;
 
@@ -80,6 +79,7 @@ export class DoorGroup{
                         this.door[ran_i][ran_j].random = true;
                     }
                     this.door[i][j].random = true;
+                    this.click += 1;
                 }
                 
             }      
